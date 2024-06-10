@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/math/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/math/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/math",
+  "projects": {
+    "math": {
+      "type": "application",
+      "root": "apps/math",
+      "entryFile": "main",
+      "sourceRoot": "apps/math/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/math/tsconfig.app.json"
+      }
+    },
+    "client": {
+      "type": "application",
+      "root": "apps/client",
+      "entryFile": "main",
+      "sourceRoot": "apps/client/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/client/tsconfig.app.json"
+      }
+    }
   }
 }
