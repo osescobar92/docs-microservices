@@ -1,12 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
-import { MathService } from './math.service';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller()
 export class MathController {
-  constructor(private readonly mathService: MathService) {}
 
-  @Get()
-  getHello(): string {
-    return this.mathService.getHello();
-  }
+    @MessagePattern({ cmd: 'sum' })
+    accumulate(data: number[]): number {
+      return (data || []).reduce((a, b) => a + b);
+    }
 }
